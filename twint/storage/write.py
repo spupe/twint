@@ -18,7 +18,7 @@ def addExt(base, objType, fType):
     return base
 
 def Text(entry, f):
-    print(entry.replace('\n', ' '), file=open(f, "a", encoding="utf-8"))
+    print(entry.replace('\n', ' '), file=open(f, "a", encoding="iso-8859-1"))
 
 def Type(config):
     if config.User_full:
@@ -56,11 +56,11 @@ def Csv(obj, config):
     dialect = 'excel-tab' if 'Tabs' in config.__dict__ else 'excel'
     
     if not (os.path.exists(base)):
-        with open(base, "w", newline='', encoding="utf-8") as csv_file:
+        with open(base, "w", newline='', encoding="iso-8859-1") as csv_file:
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames, dialect=dialect)
             writer.writeheader()
 
-    with open(base, "a", newline='', encoding="utf-8") as csv_file:
+    with open(base, "a", newline='', encoding="iso-8859-1") as csv_file:
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames, dialect=dialect)
         writer.writerow(row)
 
@@ -72,6 +72,6 @@ def Json(obj, config):
 
     base = addExt(config.Output, _obj_type, "json")
 
-    with open(base, "a", newline='', encoding="utf-8") as json_file:
+    with open(base, "a", newline='', encoding="iso-8859-1") as json_file:
         json.dump(data, json_file, ensure_ascii=False)
         json_file.write("\n")
